@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     var score = 0
     var imageArray = ArrayList<ImageView>()
-    var handler = Handler()
+    var handler = Handler(Looper.getMainLooper())
     var runnable = Runnable {  }
 
 
