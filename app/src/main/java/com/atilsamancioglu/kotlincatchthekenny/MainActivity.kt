@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_main.*
+import com.atilsamancioglu.kotlincatchthekenny.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,23 +19,26 @@ class MainActivity : AppCompatActivity() {
     var imageArray = ArrayList<ImageView>()
     var handler = Handler(Looper.getMainLooper())
     var runnable = Runnable {  }
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         //ImageArray
 
-        imageArray.add(imageView)
-        imageArray.add(imageView2)
-        imageArray.add(imageView3)
-        imageArray.add(imageView4)
-        imageArray.add(imageView5)
-        imageArray.add(imageView6)
-        imageArray.add(imageView7)
-        imageArray.add(imageView8)
-        imageArray.add(imageView9)
+        imageArray.add(binding.imageView)
+        imageArray.add(binding.imageView2)
+        imageArray.add(binding.imageView3)
+        imageArray.add(binding.imageView4)
+        imageArray.add(binding.imageView5)
+        imageArray.add(binding.imageView6)
+        imageArray.add(binding.imageView7)
+        imageArray.add(binding.imageView8)
+        imageArray.add(binding.imageView9)
 
 
 
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         object : CountDownTimer(15500,1000){
             override fun onFinish() {
 
-                timeText.text = "Time: 0"
+                binding.timeText.text = "Time: 0"
 
                 handler.removeCallbacks(runnable)
 
@@ -80,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                timeText.text = "Time: " + millisUntilFinished/1000
+                binding.timeText.text = "Time: " + millisUntilFinished/1000
             }
 
         }.start()
@@ -112,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     fun increaseScore(view: View){
         score = score + 1
-        scoreText.text = "Score: $score"
+        binding.scoreText.text = "Score: $score"
 
     }
 }
